@@ -8,7 +8,7 @@ class MapScreen(Screen):
         # Здесь в будущем будет запуск слушателя Firebase для получения координат
         
     def update_walker_location(self, lat, lon):
-        # Эту функцию ты будешь вызывать, когда придут новые координаты
+        
         if 'walker_marker' in self.ids:
             self.ids.walker_marker.lat = lat
             self.ids.walker_marker.lon = lon

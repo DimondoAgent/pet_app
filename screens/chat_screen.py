@@ -10,7 +10,7 @@ class ChatScreen(Screen):
 
         print(f"DEBUG: Отправка сообщения: {msg_text}")
         
-        # 1. Добавляем сообщение на экран
+        
         new_msg = Label(
             text=f"Вы: {msg_text}",
             color=(0,0,0,1),
@@ -21,7 +21,6 @@ class ChatScreen(Screen):
         )
         self.ids.chat_history.add_widget(new_msg)
         
-        # 2. Очищаем поле ввода
+        
         self.ids.msg_input.text = ""
-
-        # 3. (В будущем) Отправляем msg_text в Firebase Firestore
+        self.ids.chat_history.scroll_y = 0

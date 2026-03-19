@@ -13,10 +13,6 @@
             size_hint_y: None
             height: dp(60)
 
-        # BUG FIX #7: pos_hint with center_y has no effect inside a vertical
-        # MDBoxLayout — it only works in FloatLayout/MDFloatLayout.
-        # Removed the broken pos_hint from all fields; width is now controlled
-        # by size_hint_x so items stretch properly within the box.
         MDTextField:
             id: email_field
             hint_text: "Введите email"

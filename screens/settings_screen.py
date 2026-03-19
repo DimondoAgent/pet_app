@@ -22,7 +22,7 @@ class SettingsScreen(MDScreen):
             from firebase.user import get_user_profile
             data = get_user_profile(user_id, id_token)
 
-            print(f"DEBUG: Ответ от Firebase: {data}") # Если тут None, значит в БД пусто
+            print(f"DEBUG: Ответ от Firebase: {data}")
             
             if data:
                 self.ids.name_input.text = str(data.get('first_name', ''))
@@ -50,7 +50,6 @@ class SettingsScreen(MDScreen):
         }
 
         try:
-            # ВАЖНО: передаем только 1 аргумент (без id_token)
             save_user_profile(user_id, data, id_token)
             Snackbar(text="Профиль успешно сохранен!").open()
         except Exception as e:

@@ -1,6 +1,6 @@
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
-from firebase.user import get_user_profile  # Исправлено с get_profile
+from firebase.user import get_user_profile 
 
 class PetProfileScreen(MDScreen):
     def on_enter(self):

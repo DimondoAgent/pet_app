@@ -1,4 +1,3 @@
-# BUG FIX #5: Removed duplicate import of SwipeableCard (it appeared twice on lines 1-2)
 #:import SwipeableCard screens.main_screen.SwipeableCard
 #:import SettingsScreen screens.settings_screen.SettingsScreen
 #:import MapScreen screens.map_screen.MapScreen
@@ -77,8 +76,6 @@
                             on_release: swipe_card.swipe_right()
 
         # --- ВКЛАДКА 2: КАРТА ---
-        # BUG FIX #4 (continued): MapScreen lives here as tab content only.
-        # It is NOT also added to the root ScreenManager in main.py.
         MDBottomNavigationItem:
             name: 'map_tab'
             text: 'Карта'

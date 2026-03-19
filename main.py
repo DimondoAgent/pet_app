@@ -8,7 +8,7 @@ from screens.register_screen import RegisterScreen
 from screens.main_screen import MainScreen
 
 class PetApp(MDApp):
-    current_user_id = None  # Сюда пишем ID
+    current_user_id = None  
     id_token = None
 
     def build(self):
@@ -16,7 +16,6 @@ class PetApp(MDApp):
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.theme_style = "Light"
 
-        # Загружаем файлы разметки (убедись, что все файлы есть в папке kv)
         Builder.load_file("kv/register_screen.kv")
         Builder.load_file("kv/login_screen.kv")
         Builder.load_file("kv/main_screen.kv")
@@ -24,10 +23,10 @@ class PetApp(MDApp):
         Builder.load_file("kv/map_screen.kv")
         Builder.load_file("kv/chat_screen.kv")
 
-        # Инициализируем ScreenManager
+        
         self.sm = ScreenManager()
         
-        # Регистрируем все экраны
+    
         self.sm.add_widget(LoginScreen(name="login_screen"))
         self.sm.add_widget(RegisterScreen(name="register_screen"))
         self.sm.add_widget(MainScreen(name="main_screen"))

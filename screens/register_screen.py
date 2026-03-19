@@ -30,7 +30,7 @@ class RegisterScreen(MDScreen):
             }
 
             try:
-                # 3. Сохраняем в Realtime Database (передаем только 2 аргумента!)
+                # 3. Сохраняем в Realtime Database
                 save_user_profile(user_id, profile_data)
                 
                 # 4. Авторизуем в приложении
