@@ -1,0 +1,49 @@
+<RegisterScreen>:
+    name: "register_screen"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(10)
+
+        MDLabel:
+            text: "Регистрация"
+            halign: "center"
+            font_style: "H4"
+            size_hint_y: None
+            height: dp(60)
+
+        # BUG FIX #7: pos_hint with center_y has no effect inside a vertical
+        # MDBoxLayout — it only works in FloatLayout/MDFloatLayout.
+        # Removed the broken pos_hint from all fields; width is now controlled
+        # by size_hint_x so items stretch properly within the box.
+        MDTextField:
+            id: email_field
+            hint_text: "Введите email"
+            mode: "rectangle"
+
+        MDTextField:
+            id: password_field
+            hint_text: "Введите пароль"
+            mode: "rectangle"
+            password: True
+
+        MDTextField:
+            id: name_field
+            hint_text: "Ваше имя"
+            mode: "rectangle"
+
+        MDTextField:
+            id: pet_name_field
+            hint_text: "Кличка питомца"
+            mode: "rectangle"
+
+        MDRaisedButton:
+            text: "Создать аккаунт"
+            pos_hint: {"center_x": .5}
+            on_release: root.do_register()
+
+        MDFlatButton:
+            text: "Уже есть аккаунт? Войти"
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "login_screen"

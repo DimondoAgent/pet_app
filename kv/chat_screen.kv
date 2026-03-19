@@ -1,0 +1,74 @@
+<ChatScreen>:
+    name: "requests" # Совпадает с твоей кнопкой в нижнем меню
+
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # ===== HEADER =====
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(15)
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "Чат с выгульщиком"
+                color: 0, 0, 0, 1
+                font_size: "20sp"
+                bold: True
+
+        # ===== CHAT HISTORY =====
+        ScrollView:
+            BoxLayout:
+                id: chat_history
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)
+                spacing: dp(10)
+                
+                # Заглушка приветственного сообщения
+                Label:
+                    text: "Выгульщик: Привет! Готов погулять с твоим питомцем."
+                    color: 0.3, 0.3, 0.3, 1
+                    size_hint_y: None
+                    height: dp(40)
+                    halign: "left"
+                    text_size: self.size
+
+        # ===== INPUT AREA =====
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(10)
+            spacing: dp(10)
+            canvas.before:
+                Color:
+                    rgba: 0.9, 0.9, 0.9, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            TextInput:
+                id: msg_input
+                hint_text: "Введите сообщение..."
+                multiline: False
+                font_size: "16sp"
+
+            Button:
+                text: "Отправить"
+                size_hint_x: None
+                width: dp(100)
+                background_color: 0.2, 0.6, 1, 1
+                color: 1, 1, 1, 1
+                on_release: root.send_message()

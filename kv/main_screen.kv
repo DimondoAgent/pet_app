@@ -1,0 +1,107 @@
+# BUG FIX #5: Removed duplicate import of SwipeableCard (it appeared twice on lines 1-2)
+#:import SwipeableCard screens.main_screen.SwipeableCard
+#:import SettingsScreen screens.settings_screen.SettingsScreen
+#:import MapScreen screens.map_screen.MapScreen
+#:import ChatScreen screens.chat_screen.ChatScreen
+
+<SwipeableCard>:
+    style: "elevated"
+    size_hint: 0.85, 0.65
+    pos_hint: {"center_x": 0.5, "center_y": 0.55}
+    radius: [dp(20)]
+    elevation: 3
+    md_bg_color: 1, 1, 1, 1
+
+    FitImage:
+        source: root.image_source
+        radius: [dp(20)]
+        fit_mode: "cover"
+
+<MainScreen>:
+    MDBottomNavigation:
+        text_color_active: app.theme_cls.primary_color
+
+        # --- ВКЛАДКА 1: ПИТОМЦЫ ---
+        MDBottomNavigationItem:
+            name: 'pets_tab'
+            text: 'Питомцы'
+            icon: 'dog'
+
+            MDBoxLayout:
+                orientation: 'vertical'
+
+                MDTopAppBar:
+                    title: "PetApp"
+                    left_action_items: [["paw", lambda x: print("Paw icon pressed")]]
+                    elevation: 2
+                    md_bg_color: app.theme_cls.primary_color
+
+                MDFloatLayout:
+
+                    SwipeableCard:
+                        id: swipe_card
+                        image_source: "assets/images/dog_exp.jpeg"
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: dp(60)
+                        spacing: dp(40)
+                        adaptive_size: True
+                        pos_hint: {'center_x': 0.5, 'y': 0.05}
+
+                        MDFloatingActionButton:
+                            icon: "close-thick"
+                            md_bg_color: "#FF5252"
+                            theme_icon_color: "Custom"
+                            icon_color: 1, 1, 1, 1
+                            elevation: 1
+                            on_release: swipe_card.swipe_left()
+
+                        MDFloatingActionButton:
+                            icon: "sync"
+                            md_bg_color: "#90A4AE"
+                            theme_icon_color: "Custom"
+                            icon_color: 1, 1, 1, 1
+                            elevation: 1
+                            icon_size: "20sp"
+                            type: "small"
+                            on_release: swipe_card.reset_card()
+
+                        MDFloatingActionButton:
+                            icon: "heart"
+                            md_bg_color: "#4CAF50"
+                            theme_icon_color: "Custom"
+                            icon_color: 1, 1, 1, 1
+                            elevation: 1
+                            on_release: swipe_card.swipe_right()
+
+        # --- ВКЛАДКА 2: КАРТА ---
+        # BUG FIX #4 (continued): MapScreen lives here as tab content only.
+        # It is NOT also added to the root ScreenManager in main.py.
+        MDBottomNavigationItem:
+            name: 'map_tab'
+            text: 'Карта'
+            icon: 'map'
+
+            MapScreen:
+                id: map_screen
+
+        # --- ВКЛАДКА 3: ЧАТ ---
+        MDBottomNavigationItem:
+            name: 'chat_tab'
+            text: 'Чат'
+            icon: 'chat'
+
+            ChatScreen:
+                id: chat_screen
+
+        # --- ВКЛАДКА 4: НАСТРОЙКИ ---
+        MDBottomNavigationItem:
+            name: 'settings_tab'
+            text: 'Настройки'
+            icon: 'cog'
+            on_tab_press: settings_screen.load_profile_firebase()
+
+            SettingsScreen:
+                id: settings_screen

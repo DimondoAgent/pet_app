@@ -1,0 +1,37 @@
+#:import MapView kivy_garden.mapview.MapView
+
+<MapScreen>:
+    name: "map_screen"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # ===== HEADER =====
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(15)
+            canvas.before:
+                Color:
+                    rgba: 0.95, 0.95, 0.95, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "Прогулка онлайн"
+                color: 0, 0, 0, 1
+                font_size: "20sp"
+                bold: True
+
+        # ===== MAP =====
+        MapView:
+            id: map_view
+            lat: 55.7558  # Стартовая широта (например, Москва)
+            lon: 37.6173  # Стартовая долгота
+            zoom: 15
+
+            MapMarker:
+                id: walker_marker
+                lat: 55.7558
+                lon: 37.6173
+                # source: "marker_icon.png" # Сюда можно подставить иконку собачки
